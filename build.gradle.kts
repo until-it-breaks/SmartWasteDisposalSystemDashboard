@@ -19,7 +19,8 @@ repositories { // Where to search for dependencies
 }
 
 dependencies {
-
+    // https://mvnrepository.com/artifact/io.github.java-native/jssc
+    implementation("io.github.java-native:jssc:2.9.6")
 }
 
 application {

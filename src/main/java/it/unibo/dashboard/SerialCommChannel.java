@@ -1,5 +1,6 @@
 package it.unibo.dashboard;
 
+import java.io.Closeable;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -31,7 +32,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
             bytes[i] = (byte) array[i];
         }
         try {
-        synchronized (serialPort) {
+            synchronized (serialPort) {
                 serialPort.writeBytes(bytes);
             }
         } catch (SerialPortException e) {
@@ -77,6 +78,17 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void close() {
+        try {
+            if (serialPort != null) {
+                serialPort.removeEventListener();
+                serialPort.closePort();
+            }
+        } catch (SerialPortException e) {
+            e.printStackTrace();
         }
     }
 }

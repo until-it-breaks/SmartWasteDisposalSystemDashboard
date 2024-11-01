@@ -15,7 +15,7 @@ public interface CommChannel {
      * @return The received message.
      * @throws InterruptedException 
      */
-    String receiveMsg();
+    String receiveMsg() throws InterruptedException;
 
     /**
      * Checks if a message is available.

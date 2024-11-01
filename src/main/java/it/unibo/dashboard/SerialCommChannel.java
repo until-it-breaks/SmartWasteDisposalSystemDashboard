@@ -1,6 +1,5 @@
 package it.unibo.dashboard;
 
-import java.io.Closeable;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 

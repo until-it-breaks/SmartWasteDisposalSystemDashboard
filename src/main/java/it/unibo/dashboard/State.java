@@ -1,6 +1,6 @@
 package it.unibo.dashboard;
 
-public enum States {
+public enum State {
     
     IDLE("System is idle"),
     SLEEP("System is sleeping"),
@@ -12,11 +12,11 @@ public enum States {
 
     private String description;
 
-    private States(String description) {
+    private State(String description) {
         this.description = description;
     }
 
     public String getDescription() {
-        return this,description;
+        return this.description;
     }
 }

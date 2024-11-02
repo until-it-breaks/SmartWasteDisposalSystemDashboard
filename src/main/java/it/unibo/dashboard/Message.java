@@ -3,7 +3,7 @@ package it.unibo.dashboard;
 import java.time.LocalDateTime;
 
 public class Message {
-    private String state;
+    private State state;
     private String temperature;
     private String level;
     private LocalDateTime timeStamp;
@@ -12,16 +12,20 @@ public class Message {
         timeStamp = LocalDateTime.now();
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(final String state) {
+    public void setState(final State state) {
         this.state = state;
     }
 
     public String getTemperature() {
         return temperature;
+    }
+
+    public LocalDateTime getTimeStamp() {
+        return this.timeStamp;
     }
 
     public void setTemperature(final String temperature) {

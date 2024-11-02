@@ -2,6 +2,8 @@ package it.unibo.dashboard;
 
 import java.time.LocalDateTime;
 
+import it.unibo.dashboard.api.State;
+
 public class Message {
     private State state;
     private String temperature;

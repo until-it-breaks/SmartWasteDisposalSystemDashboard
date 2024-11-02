@@ -1,4 +1,4 @@
-package it.unibo.dashboard;
+package it.unibo.dashboard.api;
 
 public interface CommChannel {
     

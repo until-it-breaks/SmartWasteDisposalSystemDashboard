@@ -3,6 +3,7 @@ package it.unibo.dashboard;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import it.unibo.dashboard.api.CommChannel;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -10,10 +11,13 @@ import jssc.SerialPortException;
 
 public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
-    private SerialPort serialPort;
-    private BlockingQueue<String> queue;
+    private final Controller controller;
+    private final SerialPort serialPort;
+    private final BlockingQueue<String> queue;
+    private StringBuffer currentMsg = new StringBuffer("");
 
-    public SerialCommChannel(String port, int rate) throws SerialPortException {
+    public SerialCommChannel(final String port, final int rate, final Controller controller) throws SerialPortException {
+        this.controller = controller;
         this.queue = new ArrayBlockingQueue<>(100);
         this.serialPort = new SerialPort(port);
         this.serialPort.openPort();
@@ -23,9 +27,9 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
     }
 
     @Override
-    public void sendMsg(String msg) {   
-        char[] array = (msg+"\n").toCharArray();
-        byte[] bytes = new byte[array.length];
+    public void sendMsg(final String msg) {   
+        final char[] array = (msg+"\n").toCharArray();
+        final byte[] bytes = new byte[array.length];
         for (int i = 0; i < array.length; i++) {
             bytes[i] = (byte) array[i];
         }
@@ -33,7 +37,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
             synchronized (serialPort) {
                 serialPort.writeBytes(bytes);
             }
-        } catch (SerialPortException e) {
+        } catch (final SerialPortException e) {
             e.printStackTrace();
         }
     }
@@ -49,9 +53,8 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
     }
 
     @Override
-    public void serialEvent(SerialPortEvent serialPortEvent) {
+    public void serialEvent(final SerialPortEvent serialPortEvent) {
         if (serialPortEvent.isRXCHAR()) {
-            StringBuffer currentMsg = new StringBuffer("");
             try {
                 String msg = serialPort.readString(serialPortEvent.getEventValue());
                 msg = msg.replaceAll("\r", "");
@@ -60,10 +63,11 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
                 boolean goAhead = true;
 
                 while (goAhead) {
-                    String msg2 = currentMsg.toString();
-                    int index = msg2.indexOf("\n");
+                    final String msg2 = currentMsg.toString();
+                    final int index = msg2.indexOf("\n");
                     if (index >= 0) {
                         queue.put(msg2.substring(0, index));
+                        controller.alert();
                         currentMsg = new StringBuffer("");
                         if (index + 1 < msg2.length()) {
                             currentMsg.append(msg2.substring(index + 1));
@@ -72,9 +76,9 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
                         goAhead = false;
                     }
                 }
-            } catch (SerialPortException e) {
+            } catch (final SerialPortException e) {
                 e.printStackTrace();
-            } catch (InterruptedException e) {
+            } catch (final InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -86,7 +90,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
                 serialPort.removeEventListener();
                 serialPort.closePort();
             }
-        } catch (SerialPortException e) {
+        } catch (final SerialPortException e) {
             e.printStackTrace();
         }
     }

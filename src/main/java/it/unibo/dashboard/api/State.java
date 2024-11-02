@@ -1,4 +1,4 @@
-package it.unibo.dashboard;
+package it.unibo.dashboard.api;
 
 public enum State {
     
@@ -10,9 +10,9 @@ public enum State {
     EMPTYING_PROCESS("Container is being emptied"),
     DANGEROUS_TEMP("Temperature is dangerously high");
 
-    private String description;
+    private final String description;
 
-    private State(String description) {
+    private State(final String description) {
         this.description = description;
     }
 

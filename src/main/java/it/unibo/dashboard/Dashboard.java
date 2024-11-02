@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import it.unibo.dashboard.api.View;
+
 public class Dashboard implements View {
 
     private static final String TITLE = "Smart Waste Disposal System";
@@ -66,7 +68,7 @@ public class Dashboard implements View {
         final JPanel logPanel = new JPanel(new BorderLayout());
         logPanel.setBorder(BorderFactory.createTitledBorder("Activity Log"));
         logArea = new JTextArea();
-        logArea.setEditable(false);
+        logArea.setEnabled(false);
         logArea.setLineWrap(true);
         logArea.setWrapStyleWord(true);
         final JScrollPane scrollPane = new JScrollPane(logArea);

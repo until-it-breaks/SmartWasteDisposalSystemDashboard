@@ -12,7 +12,6 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
     private SerialPort serialPort;
     private BlockingQueue<String> queue;
-    private StringBuffer currentMsg = new StringBuffer("");
 
     public SerialCommChannel(String port, int rate) throws SerialPortException {
         this.queue = new ArrayBlockingQueue<>(100);
@@ -52,6 +51,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
     @Override
     public void serialEvent(SerialPortEvent serialPortEvent) {
         if (serialPortEvent.isRXCHAR()) {
+            StringBuffer currentMsg = new StringBuffer("");
             try {
                 String msg = serialPort.readString(serialPortEvent.getEventValue());
                 msg = msg.replaceAll("\r", "");

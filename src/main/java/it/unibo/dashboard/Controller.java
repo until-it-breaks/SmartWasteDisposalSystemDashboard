@@ -10,7 +10,7 @@ public class Controller {
     }
 
     public void setView(View view) {
-        this.dashboard = view; 
+        this.dashboard = view;
     }
 
     public void addLogEntry(String string) {

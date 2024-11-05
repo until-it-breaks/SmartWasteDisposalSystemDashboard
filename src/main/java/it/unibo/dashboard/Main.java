@@ -6,7 +6,7 @@ import jssc.SerialPortException;
 
 public class Main {
     public static void main(String[] args) {
-        Controller controller = new Controller();
+        DashBoardController controller = new DashBoardController();
         View dashboard = new Dashboard(controller);
         controller.setView(dashboard);
         CommChannel commChannel = null;

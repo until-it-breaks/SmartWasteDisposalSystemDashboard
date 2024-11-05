@@ -30,7 +30,7 @@ public class Dashboard implements View {
     private final JLabel levelLabel;
     private final JTextArea logArea;
 
-    public Dashboard(final Controller controller) {
+    public Dashboard(final DashBoardController controller) {
         final JFrame frame = new JFrame(TITLE);
         frame.setSize(WINDOW_SIZE);
         frame.setLocationRelativeTo(null);
@@ -68,7 +68,6 @@ public class Dashboard implements View {
         final JPanel logPanel = new JPanel(new BorderLayout());
         logPanel.setBorder(BorderFactory.createTitledBorder("Activity Log"));
         logArea = new JTextArea();
-        logArea.setEnabled(false);
         logArea.setLineWrap(true);
         logArea.setWrapStyleWord(true);
         final JScrollPane scrollPane = new JScrollPane(logArea);

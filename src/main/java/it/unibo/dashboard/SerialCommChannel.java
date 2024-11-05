@@ -11,12 +11,12 @@ import jssc.SerialPortException;
 
 public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
-    private final Controller controller;
+    private final DashBoardController controller;
     private final SerialPort serialPort;
     private final BlockingQueue<String> queue;
     private StringBuffer currentMsg = new StringBuffer("");
 
-    public SerialCommChannel(final String port, final int rate, final Controller controller) throws SerialPortException {
+    public SerialCommChannel(final String port, final int rate, final DashBoardController controller) throws SerialPortException {
         this.controller = controller;
         this.queue = new ArrayBlockingQueue<>(100);
         this.serialPort = new SerialPort(port);

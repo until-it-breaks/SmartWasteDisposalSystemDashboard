@@ -30,7 +30,7 @@ public class Dashboard implements View {
     private final JLabel levelLabel;
     private final JTextArea logArea;
 
-    public Dashboard(Controller controller) {
+    public Dashboard(final Controller controller) {
         final JFrame frame = new JFrame(TITLE);
         frame.setSize(WINDOW_SIZE);
         frame.setLocationRelativeTo(null);
@@ -97,7 +97,6 @@ public class Dashboard implements View {
             public void actionPerformed(final ActionEvent e) {
                 controller.sendRestoreSignal();
             }
-            
         });
 
         panel.add(buttonPanel, BorderLayout.SOUTH);

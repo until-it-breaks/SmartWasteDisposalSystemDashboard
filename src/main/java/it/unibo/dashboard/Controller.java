@@ -1,7 +1,5 @@
 package it.unibo.dashboard;
 
-import java.util.Random;
-
 import it.unibo.dashboard.api.CommChannel;
 import it.unibo.dashboard.api.View;
 
@@ -39,11 +37,11 @@ public class Controller {
     }
 
     public void alert() {
-        Random random = new Random();
-        this.updateTemp(Integer.toString(random.nextInt(100)) + " celsius");
-        this.updateLevel(Integer.toString(random.nextInt(100)) + "%");
         try {
-            this.addLogEntry(channel.receiveMsg() + "\n");
+            Message message = MessageParser.parse(channel.receiveMsg());
+            this.updateTemp(message.getTemperature() + " celsius");
+            this.updateLevel(message.getLevel() + "%");
+            this.addLogEntry(message.getState().toString() + "\n");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

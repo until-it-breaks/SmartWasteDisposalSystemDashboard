@@ -11,7 +11,6 @@ public class Message {
     private LocalDateTime timeStamp;
 
     public Message() {
-        timeStamp = LocalDateTime.now();
     }
 
     public State getState() {
@@ -40,5 +39,9 @@ public class Message {
 
     public void setLevel(final String level) {
         this.level = level;
+    }
+
+    public void setTimeStamp() {
+        this.timeStamp = LocalDateTime.now();
     }
 }

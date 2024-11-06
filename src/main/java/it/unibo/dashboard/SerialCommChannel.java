@@ -11,12 +11,12 @@ import jssc.SerialPortException;
 
 public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
-    private final DashBoardController controller;
+    private final DashboardController controller;
     private final SerialPort serialPort;
     private final BlockingQueue<String> queue;
     private StringBuffer currentMsg = new StringBuffer("");
 
-    public SerialCommChannel(final String port, final int rate, final DashBoardController controller) throws SerialPortException {
+    public SerialCommChannel(final String port, final int rate, final DashboardController controller) throws SerialPortException {
         this.controller = controller;
         this.queue = new ArrayBlockingQueue<>(100);
         this.serialPort = new SerialPort(port);
@@ -57,7 +57,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
         if (serialPortEvent.isRXCHAR()) {
             try {
                 String msg = serialPort.readString(serialPortEvent.getEventValue());
-                msg = msg.replaceAll("\r", "");
+                msg = msg.trim();
                 currentMsg.append(msg);
 
                 boolean goAhead = true;
@@ -67,6 +67,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
                     final int index = msg2.indexOf("\n");
                     if (index >= 0) {
                         queue.put(msg2.substring(0, index));
+                        System.out.println(msg2);
                         controller.alert();
                         currentMsg = new StringBuffer("");
                         if (index + 1 < msg2.length()) {
@@ -76,14 +77,13 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
                         goAhead = false;
                     }
                 }
-            } catch (final SerialPortException e) {
-                e.printStackTrace();
-            } catch (final InterruptedException e) {
+            } catch (final SerialPortException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    @Override
     public void close() {
         try {
             if (serialPort != null) {

@@ -23,4 +23,9 @@ public interface CommChannel {
      * @return {@code true} if available, {@code false} otherwise.
      */
     boolean isMsgAvailable();
+
+    /**
+     * Closes the communication channel.
+     */
+    void close();
 }

@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -18,9 +20,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
-import it.unibo.dashboard.api.View;
+import it.unibo.dashboard.api.Dashboard;
 
-public class Dashboard implements View {
+
+public class DashboardImpl implements Dashboard {
 
     private static final String TITLE = "Smart Waste Disposal System";
     private static final Dimension WINDOW_SIZE = new Dimension(640, 480);
@@ -30,7 +33,7 @@ public class Dashboard implements View {
     private final JLabel levelLabel;
     private final JTextArea logArea;
 
-    public Dashboard(final DashBoardController controller) {
+    public DashboardImpl(final DashboardController controller) {
         final JFrame frame = new JFrame(TITLE);
         frame.setSize(WINDOW_SIZE);
         frame.setLocationRelativeTo(null);
@@ -95,6 +98,12 @@ public class Dashboard implements View {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 controller.sendRestoreSignal();
+            }
+        });
+
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                controller.closeChannel();
             }
         });
 

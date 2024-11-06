@@ -1,6 +1,9 @@
 package it.unibo.dashboard.api;
 
-public interface View {
+/**
+ * A dashboard that has a history log, temperature and liquid level sensor.
+ */
+public interface Dashboard {
 
     void addLogEntry(String string);
 

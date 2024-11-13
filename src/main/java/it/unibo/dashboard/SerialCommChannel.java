@@ -57,7 +57,6 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
         if (serialPortEvent.isRXCHAR()) {
             try {
                 String msg = serialPort.readString(serialPortEvent.getEventValue());
-                msg = msg.trim();
                 currentMsg.append(msg);
 
                 boolean goAhead = true;
@@ -67,7 +66,6 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
                     final int index = msg2.indexOf("\n");
                     if (index >= 0) {
                         queue.put(msg2.substring(0, index));
-                        System.out.println(msg2);
                         controller.alert();
                         currentMsg = new StringBuffer("");
                         if (index + 1 < msg2.length()) {

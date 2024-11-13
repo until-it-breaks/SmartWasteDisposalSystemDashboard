@@ -50,10 +50,9 @@ public class DashBoardController {
             final Message message = MessageParser.parse(channel.receiveMsg());
             if (message != null) {
                 this.updateTemp(message.getTemperature() + " celsius");
-                this.updateLevel(message.getLevel() + "%");
+                this.updateLevel(Double.valueOf(message.getLevel())*100 + "%");
                 if (message.getState() != this.currentState) {
                     this.addLogEntry(message.getTimeStamp().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) +
-                        ":" + message.getState() +
                         ": " + message.getState().getDescription() +
                         "\n");
                     this.currentState = message.getState();

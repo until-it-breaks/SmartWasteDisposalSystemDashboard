@@ -11,7 +11,7 @@ public class MessageParser {
      * A very basic implementation assuming that the message is formatted this way: STATE:IDLE|TEMP:22|LEVEL:75
      */
     public static Message parse(final String message) {
-        if (!message.matches("\\bSTATE:[^\\|]+\\|TEMP:[^\\|]+\\|LEVEL:[^\\|]+\\b")) {
+        if (!message.matches("STATE:[^\\|]+\\|TEMP:[^\\|]+\\|LEVEL:[^\\|]+\\n?")) {
             // Whatever message that does not match gets printed in the console instead of the GUI
             System.out.println(message);
             return null;

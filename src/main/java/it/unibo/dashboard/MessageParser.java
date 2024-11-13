@@ -16,9 +16,9 @@ public class MessageParser {
      * A very basic implementation assuming that the message is formatted like this: STATE:IDLE|TEMP:22|LEVEL:75
      */
     public static Message parse(final String message) {
+        System.out.println(message);
         if (!message.matches(regexPattern)) {
             // Any message that does not match gets printed in the console instead of the GUI
-            System.out.println(message);
             return null;
         }
 

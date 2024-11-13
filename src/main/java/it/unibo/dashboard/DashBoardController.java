@@ -34,11 +34,11 @@ public class DashBoardController {
     }
 
     public void sendRestoreSignal() {
-        channel.sendMsg("RESTORE");
+        channel.sendMsg("0");
     }
 
     public void sendProceedSignal() {
-        channel.sendMsg("PROCEED");
+        channel.sendMsg("1");
     }
 
     public void closeChannel() {

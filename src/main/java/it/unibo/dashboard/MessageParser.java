@@ -5,14 +5,19 @@ import java.util.List;
 
 import it.unibo.dashboard.api.State;
 
+/*
+ * A class containing functions for parsing and returning incoming messages;
+ */
 public class MessageParser {
 
+    private static String regexPattern = "STATE:[^\\|]+\\|TEMP:[^\\|]+\\|LEVEL:[^\\|]+\\n?";
+
     /*
-     * A very basic implementation assuming that the message is formatted this way: STATE:IDLE|TEMP:22|LEVEL:75
+     * A very basic implementation assuming that the message is formatted like this: STATE:IDLE|TEMP:22|LEVEL:75
      */
     public static Message parse(final String message) {
-        if (!message.matches("STATE:[^\\|]+\\|TEMP:[^\\|]+\\|LEVEL:[^\\|]+\\n?")) {
-            // Whatever message that does not match gets printed in the console instead of the GUI
+        if (!message.matches(regexPattern)) {
+            // Any message that does not match gets printed in the console instead of the GUI
             System.out.println(message);
             return null;
         }

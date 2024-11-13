@@ -52,9 +52,10 @@ public class DashBoardController {
                 this.updateTemp(message.getTemperature() + " celsius");
                 this.updateLevel(Double.valueOf(message.getLevel())*100 + "%");
                 if (message.getState() != this.currentState) {
-                    this.addLogEntry(message.getTimeStamp().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) +
-                        ": " + message.getState().getDescription() +
-                        "\n");
+                    this.addLogEntry(message.getTimeStamp().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                        + ": "
+                        + message.getState().getDescription()
+                        + "\n");
                     this.currentState = message.getState();
                 }
             }

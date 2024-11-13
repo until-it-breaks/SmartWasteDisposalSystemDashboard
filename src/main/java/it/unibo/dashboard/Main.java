@@ -27,7 +27,6 @@ public class Main {
         }
     }
 
-
     private static void startApplication(final String portName) {
         final DashBoardController controller = new DashBoardController();
         final Dashboard dashboard = new DashboardImpl(controller);

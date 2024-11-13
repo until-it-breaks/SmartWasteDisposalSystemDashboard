@@ -6,7 +6,7 @@ import it.unibo.dashboard.api.CommChannel;
 import it.unibo.dashboard.api.State;
 import it.unibo.dashboard.api.Dashboard;
 
-public class DashboardController {
+public class DashBoardController {
 
     private Dashboard dashboard;
     private CommChannel channel;

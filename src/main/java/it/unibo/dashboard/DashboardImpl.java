@@ -33,7 +33,7 @@ public class DashboardImpl implements Dashboard {
     private final JLabel levelLabel;
     private final JTextArea logArea;
 
-    public DashboardImpl(final DashboardController controller) {
+    public DashboardImpl(final DashBoardController controller) {
         final JFrame frame = new JFrame(TITLE);
         frame.setSize(WINDOW_SIZE);
         frame.setLocationRelativeTo(null);

@@ -97,7 +97,7 @@ public class Main {
     }
 
     private static void startApplication(final String portName) {
-        final DashboardController controller = new DashboardController();
+        final DashBoardController controller = new DashBoardController();
         final Dashboard dashboard = new DashboardImpl(controller);
         CommChannel commChannel = null;
         try {

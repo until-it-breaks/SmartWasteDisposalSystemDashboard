@@ -1,6 +1,8 @@
-# SWDS_Dashboard
-A dashboard that displays sensor readings and an activity log coming from an Arduino.
-To be used in conjunction with an Arduino Uno R3 loaded with the SmartWasteDisposalSystem program.
+# Smart Waste Disposal System Dashboard
+A dashboard that displays sensor readings and activity logs coming from a primary system.
+To be used in conjunction with an Arduino Uno R3 flashed with the SmartWasteDisposalSystem program.
 
-When launched it will attempt to detect the serial port on which Arduino is connected, assuming that a message containing "ArduinoUno" is sent from the MCU during the setup.
-There is also an option to provide the port via args with either {./gradlew run --args="portname"} or {java -jar ./dashboard-all.jar "portname"}.
+This program is supposed to be launched via terminal using {java -jar ./dashboard-all.jar}.
+Upon execution with no arguments the application will report all active serial ports.
+On Windows, the user can identify the correct port by using the Device Manager and searching for the COM port used by Arduino.
+Knowing the correct port the user can then run the application again using {java -jar ./dashboard-all.jar "portname"} or {./gradlew run --args="portname"} when debugging.

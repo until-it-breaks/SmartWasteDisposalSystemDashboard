@@ -22,7 +22,6 @@ import javax.swing.SwingUtilities;
 
 import it.unibo.dashboard.api.Dashboard;
 
-
 public class DashboardImpl implements Dashboard {
 
     private static final String TITLE = "Smart Waste Disposal System";

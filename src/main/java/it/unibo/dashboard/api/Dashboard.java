@@ -10,5 +10,4 @@ public interface Dashboard {
     void updateTemp(String string);
 
     void updateLevel(String string);
-
 }

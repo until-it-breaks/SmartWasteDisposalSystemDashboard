@@ -7,10 +7,16 @@ import jssc.SerialPortException;
 import jssc.SerialPortList;
 
 /**
- * Attempts to detect the port on which Arduino is connected, assuming that in the setup a message containing "ArduinoUno" is sent from the MCU.
- * There is also the option to provide the port via args with either {./gradlew run --args="portname"} or {java -jar ./dashboard-all.jar "portname"}.
- */
+ * Smart Waste Disposal System Dashboard
+ * Authors: Jiekai Sun, Weijie Fu
+ **/
+
 public class Main {
+    /**
+     * Upon execution with no arguments the appplication will report all active serial ports.
+     * On Windows, the user can identify the correct port by using the Device Manager and searching for the COM port used by Arduino.
+     * Knowing the correct port the user can then run the application again using {java -jar ./dashboard-all.jar "portname"} or {./gradlew run --args="portname"} when debugging.
+     */
     public static void main(final String[] args) {
         if (args.length == 0) {
             final String[] ports = SerialPortList.getPortNames();

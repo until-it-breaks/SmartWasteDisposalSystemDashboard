@@ -34,7 +34,7 @@ public class Main {
     }
 
     private static void startApplication(final String portName) {
-        final DashBoardController controller = new DashBoardController();
+        final DashboardController controller = new DashboardController();
         final Dashboard dashboard = new DashboardImpl(controller);
         CommChannel commChannel = null;
         try {

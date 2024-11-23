@@ -3,7 +3,6 @@ package it.unibo.dashboard.api;
 public enum State {
     
     IDLE("System is idle"),
-    SLEEP("System is sleeping"),
     ENTERING_WASTE("Awaiting for waste"),
     WASTE_RECEIVED("Waste was received"),
     CONTAINER_FULL("Container is full"),
